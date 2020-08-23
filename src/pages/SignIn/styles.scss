@@ -1,0 +1,55 @@
+#sign-in-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #333;
+
+  > form {
+    background-color: var(--background-white-color);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    min-width: 400px;
+    padding: 24px 24px 60px;
+
+    > :not(input) {
+      margin-top: 16px;
+    }
+
+    > label {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    > input {
+      border-radius: 3px;
+      border: 0 #777;
+      height: 4rem;
+      box-shadow: 0 0 3px 0 #000;
+    }
+
+    > button {
+      margin-top: 24px;
+      height: 4.5rem;
+      background: var(--primary-gradient);
+      color: #F0F0F5;
+      border: none;
+      border-radius: 3px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 3px 0 #000;
+      transition: background 0.9s;
+
+      &:hover {
+        background: var(--primary-gradient-darker);
+      }
+    }
+
+    > img {
+      width: fit-content;
+      margin: 0 auto;
+    }
+  }
+}

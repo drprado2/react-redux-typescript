@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import './assets/styles/global.scss';
+import SignIn from "./pages/SignIn";
+import {Provider} from 'react-redux';
+import {store, persistor} from "./store";
+import { PersistGate } from 'redux-persist/integration/react'
+
+console.log(`Print custom variable, must have REACT_APP_ preffix: ${process.env.REACT_APP_ADRIANO}`, process.env)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+              <SignIn />
+          </PersistGate>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
