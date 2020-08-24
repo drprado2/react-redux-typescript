@@ -1,15 +1,29 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {AuthState, LoginForm} from "./types";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {AuthState, LoginForm, Route} from "./types";
+import Home from '../../../pages/Home';
+
+const allRoutes: Route[] = [
+    {
+        component: Home,
+        exact: true,
+        path: '/home/:companyId',
+        isDefaultForCurrentUser: roles => roles.includes("VIEWER"),
+        roles: ["VIEWER"]
+    }
+];
 
 const initialState: AuthState = {
     loadingSignInRequest: false,
     isSignedIn: false,
     error: false,
     token: '',
+    roles: [],
     loginForm: {
         email: '',
         password: ''
-    }
+    },
+    allRoutes: allRoutes,
+    authorizedRoutes: [],
 };
 
 const authSlice = createSlice({
@@ -19,10 +33,17 @@ const authSlice = createSlice({
         signInRequest(state, action: PayloadAction<LoginForm>) {
             state.loadingSignInRequest = true;
         },
-        signInSuccess(state, action: PayloadAction<{token: string}>) {
+        signOutRequest(state, action: PayloadAction) {
+            state.isSignedIn = false;
+            state.token = '';
+        },
+        signInSuccess(state, action: PayloadAction<{ token: string, roles: string[] }>) {
+            const {token, roles}  = action.payload;
             state.loadingSignInRequest = false;
             state.isSignedIn = true;
-            state.token = action.payload.token;
+            state.roles = roles;
+            state.token = token;
+            state.authorizedRoutes = allRoutes.filter(route => roles.some((userRole: string) => route.roles.indexOf(userRole) > -1))
         },
         signInFailure(state, action: PayloadAction) {
             state.loadingSignInRequest = false;
@@ -34,7 +55,8 @@ const authSlice = createSlice({
 export const {
     signInSuccess,
     signInRequest,
-    signInFailure
+    signInFailure,
+    signOutRequest
 } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -13,7 +13,7 @@ export function* signIn({payload}: PayloadAction<LoginForm>) {
     try {
         const {email, password} = payload;
         const {data} = yield call(api.post, '', {email, password})
-        yield put(actions.signInSuccess({token: data.token}));
+        yield put(actions.signInSuccess({token: data.token, roles: ['VIEWER', 'SELLER']}));
     } catch (err) {
         yield put(actions.signInFailure());
     }
