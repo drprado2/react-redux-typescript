@@ -7,7 +7,10 @@ import {store, persistor} from "./store";
 import { PersistGate } from 'redux-persist/integration/react'
 import Routes from "./routes";
 
-console.log(`Print custom variable, must have REACT_APP_ preffix: ${process.env.REACT_APP_ADRIANO}`, process.env)
+console.log(
+  `Print custom variable, must have REACT_APP_ preffix: ${process.env.REACT_APP_ADRIANO}`,
+  process.env,
+);
 
 ReactDOM.render(
   <React.StrictMode>
