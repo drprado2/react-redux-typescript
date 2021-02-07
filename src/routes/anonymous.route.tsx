@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 import {
-    Route,
-    Switch,
-    Redirect
+  Route, Switch, Redirect, RouteComponentProps,
 } from 'react-router-dom';
-import SignIn from "../pages/SignIn";
+import SignIn from '../pages/SignIn';
 
-export default function AnonymousRoutes() {
-    return (
-        <Switch>
-            <Route path='/login' exact component={SignIn} />
-            <Route path='/' exact component={SignIn} />
-            <Route path='*' render={(props) =>
-                <Redirect to={{pathname: '/login', state: {from: props.location}}}  />
-            } />
-        </Switch>
-    )
+export default function AnonymousRoutes() : JSX.Element {
+  return (
+    <Switch>
+      <Route path="/login" exact component={SignIn} />
+      <Route path="/" exact component={SignIn} />
+      <Route
+        path="*"
+        render={(props: RouteComponentProps<any>) => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        }
+      />
+    </Switch>
+  );
 }

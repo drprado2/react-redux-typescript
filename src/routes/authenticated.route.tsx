@@ -1,25 +1,31 @@
-import React from "react";
+import React from 'react';
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch
+  Route, Switch, useHistory,
 } from 'react-router-dom';
-import Home from "../pages/Home";
-import PageNotFound from "../pages/PageNotFound";
-import {useSelector} from "react-redux";
-import {StoreState} from "../store";
+import { useSelector } from 'react-redux';
+import PageNotFound from '../pages/PageNotFound';
+import { StoreState } from '../store';
+import { authorizedRoutes } from '../store/modules/auth/slice';
 
 export interface HomeParams {
-    companyId: string;
+  companyId: string;
 }
 
 export default function AuthenticatedRoutes() {
-    const {authorizedRoutes} = useSelector((state: StoreState) => state.auth);
+  const { roles } = useSelector((state: StoreState) => state.auth);
 
-    return (
-        <Switch>
-            {authorizedRoutes.map(route => <Route path={route.path} exact={route.exact} component={route.component} />)}
-            <Route path='*' component={PageNotFound} />
-        </Switch>
-    )
+  return (
+    <Switch>
+      {authorizedRoutes(roles).map((route) => (
+        <Route
+          key={route.path}
+          path={route.path}
+          exact={route.exact}
+          component={route.component}
+        />
+      ))}
+      <Route path="/" exact component={authorizedRoutes(roles).find((x) => x.isDefaultForCurrentUser(roles))?.component} />
+      <Route path="*" component={PageNotFound} />
+    </Switch>
+  );
 }

@@ -1,13 +1,6 @@
-import React from "react";
+import React from 'react';
 import './styles.less';
 
-const DrawerMenu = () => {
-
-    return (
-        <div>
-            Drawer Menu
-        </div>
-    )
-}
+const DrawerMenu = () => <div>Drawer Menu</div>;
 
 export default DrawerMenu;

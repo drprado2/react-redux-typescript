@@ -1,19 +1,16 @@
-import React from "react";
-import {
-    Link,
-    useLocation
-} from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function PageNotFound(){
-    const location = useLocation();
+export default function PageNotFound() {
+  const location = useLocation();
 
-    return (
-        <div>
-            <h3>
-                Página <span style={{color: '#777', textDecoration: 'underline'}}> {location.pathname} </span> não encontrada
-                <br/>
-                <Link to='home/123'>Retornar para home</Link>
-            </h3>
-        </div>
-    )
+  return (
+    <div>
+      <h3>
+        Página <span style={{ color: '#777', textDecoration: 'underline' }}> {location.pathname} </span> não encontrada
+        <br />
+        <Link to="/home">Retornar para home</Link>
+      </h3>
+    </div>
+  );
 }
