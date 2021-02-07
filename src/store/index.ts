@@ -1,48 +1,39 @@
-import rootReducer from "./modules/rootReducer";
-import rootSaga from "./modules/rootSaga";
 import createSagaMiddleware from 'redux-saga';
-import {Middleware} from "redux";
-import { configureStore } from '@reduxjs/toolkit'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import { createTransform } from 'redux-persist';
+import { Middleware } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer, createTransform } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import rootSaga from './modules/rootSaga';
+import rootReducer from './modules/rootReducer';
 
 const removeLoadingProperties = createTransform(
-    (inboundState: any, key) => {
-        let newState: any = {};
-        for(const objKey in inboundState){
-            if(!objKey.toUpperCase().includes('LOADING'))
-                newState[objKey] = inboundState[objKey];
-        }
-      return { ...newState };
-    },
-    (outboundState, key) => {
-      return { ...outboundState };
-    },
+  (inboundState: any) => {
+    const newState: any = {};
+    for (const objKey in inboundState) {
+      if (!objKey.toUpperCase().includes('LOADING')) newState[objKey] = inboundState[objKey];
+    }
+    return { ...newState };
+  },
+  (outboundState) => ({ ...outboundState }),
 );
 
 const persistConfig = {
   key: 'root',
   storage,
-    transforms: [removeLoadingProperties]
-}
-const persistedReducer = persistReducer(persistConfig, rootReducer)
+  transforms: [removeLoadingProperties],
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
-const middlewares: Middleware[] = [
-  sagaMiddleware
-];
+const middlewares: Middleware[] = [sagaMiddleware];
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: middlewares
+  middleware: middlewares,
 });
 sagaMiddleware.run(rootSaga);
 
-const persistor = persistStore(store)
+const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 export type StoreState = ReturnType<typeof rootReducer>;
-export {
-  store,
-  persistor
-};
-
+export { store, persistor };
