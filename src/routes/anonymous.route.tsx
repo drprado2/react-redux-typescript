@@ -8,7 +8,6 @@ export default function AnonymousRoutes() : JSX.Element {
   return (
     <Switch>
       <Route path="/login" exact component={SignIn} />
-      <Route path="/" exact component={SignIn} />
       <Route
         path="*"
         render={(props: RouteComponentProps<any>) => <Redirect to={{ pathname: '/login', state: { from: props.location } }} />

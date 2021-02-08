@@ -1,0 +1,16 @@
+
+.drawer-menu {
+  width: 17em;
+  overflow: hidden;
+  white-space: nowrap;
+
+  transition: width .2s;
+
+  &.close {
+    width: 2em;
+  }
+
+  .header {
+    height: var(--header-height);
+  }
+}

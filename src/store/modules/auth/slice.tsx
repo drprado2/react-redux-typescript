@@ -1,28 +1,48 @@
+import React from 'react';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { FaBeer } from 'react-icons/fa';
+import { GiCardAceHearts } from 'react-icons/gi';
 import {
   AuthState, LoginForm, Role, Route,
 } from './types';
 import Home from '../../../pages/Home';
+import Cards from '../../../pages/Cards';
 
 export const allRoutes: Route[] = [
   {
+    id: 'home',
     component: Home,
     exact: true,
     path: '/home',
     isDefaultForCurrentUser: (roles) => roles.includes('VIEWER'),
     roles: ['VIEWER'],
+    title: 'Home',
+    icon: <FaBeer />,
+  },
+  {
+    id: 'cards',
+    component: Cards,
+    exact: true,
+    path: '/cards',
+    isDefaultForCurrentUser: (roles) => false,
+    roles: ['VIEWER'],
+    title: 'Cartões',
+    icon: <GiCardAceHearts />,
   },
 ];
+
+const authTokenKey = 'auth:token';
+const authRolesKey = 'auth:roles';
 
 export const authorizedRoutes = (roles: Role[]) => allRoutes.filter((route) =>
   roles.some((userRole: string) => route.roles.indexOf(userRole) > -1));
 
 const initialState: AuthState = {
   loadingSignInRequest: false,
-  isSignedIn: false,
+  isSignedIn: () => !!localStorage.getItem(authTokenKey),
   error: false,
-  token: '',
-  roles: [],
+  token: () => localStorage.getItem(authTokenKey),
+  roles: () => JSON.parse(localStorage.getItem(authRolesKey) ?? '[]'),
   loginForm: {
     email: '',
     password: '',
@@ -37,18 +57,24 @@ const authSlice = createSlice({
       state.loadingSignInRequest = true;
     },
     signOutRequest(state, action: PayloadAction) {
-      state.isSignedIn = false;
-      state.token = '';
+      localStorage.removeItem(authTokenKey);
+      localStorage.removeItem(authRolesKey);
+      state.token = () => localStorage.getItem(authTokenKey);
+      state.isSignedIn = () => !!localStorage.getItem(authTokenKey);
+      state.roles = () => JSON.parse(localStorage.getItem(authRolesKey) ?? '[]');
     },
     signInSuccess(
       state,
       action: PayloadAction<{ token: string; roles: string[] }>,
     ) {
       const { token, roles } = action.payload;
+      localStorage.setItem(authTokenKey, token);
+      localStorage.setItem(authRolesKey, JSON.stringify(roles));
+
       state.loadingSignInRequest = false;
-      state.isSignedIn = true;
-      state.roles = roles;
-      state.token = token;
+      state.token = () => localStorage.getItem(authTokenKey);
+      state.isSignedIn = () => !!localStorage.getItem(authTokenKey);
+      state.roles = () => JSON.parse(localStorage.getItem(authRolesKey) ?? '[]');
     },
     signInFailure(state, action: PayloadAction) {
       state.loadingSignInRequest = false;

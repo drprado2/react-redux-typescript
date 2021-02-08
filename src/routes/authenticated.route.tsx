@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Redirect,
   Route, Switch, useHistory,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -16,7 +17,7 @@ export default function AuthenticatedRoutes() {
 
   return (
     <Switch>
-      {authorizedRoutes(roles).map((route) => (
+      {authorizedRoutes(roles()).map((route) => (
         <Route
           key={route.path}
           path={route.path}
@@ -24,8 +25,7 @@ export default function AuthenticatedRoutes() {
           component={route.component}
         />
       ))}
-      <Route path="/" exact component={authorizedRoutes(roles).find((x) => x.isDefaultForCurrentUser(roles))?.component} />
-      <Route path="*" component={PageNotFound} />
+      <Route path="*" render={() => <Redirect to={authorizedRoutes(roles())[0].path} />} />
     </Switch>
   );
 }

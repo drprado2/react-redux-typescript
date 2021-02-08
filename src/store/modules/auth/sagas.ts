@@ -17,7 +17,6 @@ export function* signIn() {
     const { email, password } = yield select((state) => state.auth.loginForm);
     console.log('saca so', email, password);
     response = yield call(api.post, '/api/v1/signin', { email, password });
-    window.location.href = '/';
     yield put(actions.signInSuccess({ token: response.data.token, roles: ['VIEWER', 'SELLER'] }));
   } catch (err) {
     console.error('Fail singin 123', err);

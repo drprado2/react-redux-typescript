@@ -1,3 +1,5 @@
+import { IconType } from 'react-icons';
+
 export interface LoginForm {
   readonly email: string;
   readonly password: string;
@@ -11,13 +13,16 @@ export type Route = {
   component(): JSX.Element;
   isDefaultForCurrentUser(userRoles: Role[]): boolean;
   roles: Role[];
+  title: string;
+  icon: JSX.Element;
+  id: string;
 };
 
 export interface AuthState {
   readonly loadingSignInRequest: boolean;
-  readonly isSignedIn: boolean;
+  isSignedIn(): boolean;
   readonly error: boolean;
-  readonly token: string;
+  token(): string | null;
   readonly loginForm: LoginForm;
-  readonly roles: string[];
+  roles(): string[];
 }
