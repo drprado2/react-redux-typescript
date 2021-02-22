@@ -5,13 +5,13 @@ import { GiCardAceHearts } from 'react-icons/gi';
 import {
   AuthState, LoginForm, Role, Route,
 } from './types';
-import Home from '../../../pages/Home';
-import Cards from '../../../pages/Cards';
+import HomePage from '../../../pages/Home';
+import CardsPage from '../../../pages/Cards';
 
 export const allRoutes: Route[] = [
   {
     id: 'home',
-    component: Home,
+    component: HomePage,
     exact: true,
     path: '/home',
     isDefaultForCurrentUser: (roles) => roles.includes('VIEWER'),
@@ -21,7 +21,7 @@ export const allRoutes: Route[] = [
   },
   {
     id: 'cards',
-    component: Cards,
+    component: CardsPage,
     exact: true,
     path: '/cards',
     isDefaultForCurrentUser: (roles) => false,

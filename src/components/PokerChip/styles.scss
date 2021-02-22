@@ -1,0 +1,205 @@
+.poker-chip {
+  display: flex;
+  flex-direction: column;
+
+  .stacks {
+    display: flex;
+    height: 22px;
+
+    > .chip-stack {
+      position: relative;
+      width: 28px;
+
+      .chip-box {
+        transform: rotate3d(360, 88, -40, 48deg);
+        perspective: 340px;
+        transform-style: preserve-3d;
+        box-shadow: 0px 4px 5px 1px #000;
+        border-radius: 50%;
+        position: absolute;
+        overflow: hidden;
+
+        > .chip {
+          > div {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            box-sizing: border-box;
+            position: relative;
+            font-family: 'Roboto';
+
+            > .inner-circle {
+              position: absolute;
+              width: 90%;
+              height: 90%;
+              border-radius: 50%;
+              border: 1px dashed #f0f0f0;
+            }
+          }
+
+          &:before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(37deg, transparent 40%, white 34%, white 57%, transparent 58%);
+            z-index: 0;
+          }
+
+          &:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: linear-gradient(148deg, transparent 40%, white 34%, white 57%, transparent 58%);
+            border-radius: 50%;
+            z-index: 0;
+          }
+        }
+      }
+
+      .chip {
+        font-size: 9px;
+        line-height: 0px;
+        padding: 3px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #f0f0f0;
+        position: relative;
+      }
+
+      .ilustrative {
+        > .chip {
+          background: linear-gradient(90deg, black 40%, white 40%, white 61%, black 60%);
+
+          > div {
+            background-color: black;
+          }
+        }
+      }
+
+      .c1000000 {
+        > .chip {
+          background: linear-gradient(90deg, blue 40%, white 40%, white 61%, blue 60%);
+
+          > div {
+            background-color: blue;
+          }
+        }
+      }
+
+      .c500000 {
+        > .chip {
+          background: linear-gradient(90deg, green 40%, white 40%, white 61%, green 60%);
+
+          > div {
+            background-color: green;
+          }
+        }
+      }
+
+      .c250000 {
+        > .chip {
+          background: linear-gradient(90deg, purple 40%, white 40%, white 61%, purple 60%);
+
+          > div {
+            background-color: purple;
+          }
+        }
+      }
+
+      .c150000 {
+        > .chip {
+          background: linear-gradient(90deg, grey 40%, white 40%, white 61%, grey 60%);
+
+          > div {
+            background-color: grey;
+          }
+        }
+      }
+
+      .c50000 {
+        > .chip {
+          background: linear-gradient(90deg, #252b2f 40%, white 40%, white 61%, #252b2f 60%);
+
+          > div {
+            background-color: #252b2f;
+          }
+        }
+      }
+
+      .c10000 {
+        > .chip {
+          background: linear-gradient(90deg, #5f433b 40%, white 40%, white 61%, #5f433b 60%);
+
+          > div {
+            background-color: #5f433b;
+          }
+        }
+      }
+
+      .c1000 {
+        > .chip {
+          background: linear-gradient(90deg, #d2bc2b 40%, white 40%, white 61%, #d2bc2b 60%);
+
+          > div {
+            background-color: #d2bc2b;
+          }
+        }
+      }
+
+      .c100 {
+        > .chip {
+          background: linear-gradient(90deg, #d8332d 40%, white 40%, white 61%, #d8332d 60%);
+
+          > div {
+            background-color: #d8332d;
+          }
+        }
+      }
+
+      .c10 {
+        > .chip {
+          background: linear-gradient(90deg, #1c6ab0 40%, white 40%, white 61%, #1c6ab0 60%);
+
+          > div {
+            background-color: #1c6ab0;
+          }
+        }
+      }
+
+      .c1 {
+        > .chip {
+          background: linear-gradient(90deg, #9aaa9b 40%, white 40%, white 61%, #9aaa9b 60%);
+
+          > div {
+            background-color: #9aaa9b;
+          }
+        }
+      }
+    }
+  }
+
+
+  .total-prize {
+    color: rgb(240, 240, 240);
+    text-align: center;
+    z-index: 1;
+
+    > span {
+      padding: 2px 6px;
+      background-color: rgba(0,0,0,.7);
+      border-radius: 11px;
+      font-family: monospace;
+    }
+  }
+}

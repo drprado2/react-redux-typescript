@@ -1,0 +1,146 @@
+.player {
+  margin-bottom: 5px;
+  width: 160px;
+  position: relative;
+  height: 105px;
+  display: flex;
+  align-items: flex-end;
+  font-size: .8em;
+
+  &.hidden {
+    height: 70px;
+  }
+
+  &.left {
+    margin-left: 27px;
+
+    .show-cards {
+      left: -50px;
+      right: unset;
+    }
+  }
+
+  &.right {
+    margin-right: 27px;
+
+    .show-cards {
+      right: -50px;
+      left: unset;
+    }
+  }
+
+  > .cards {
+    position: absolute;
+    left: 30px;
+    top: -4%;
+
+    &.hidden {
+      top: -2%;
+      height: 50%;
+      overflow: hidden;
+    }
+
+    &.show-cards {
+      overflow: initial;
+      top: -13%;
+      height: 50%;
+      z-index: 1000;
+    }
+  }
+
+  > .avatar-area {
+    height: 60px;
+    width: 160px;
+    display: flex;
+    border: 4px solid #555;
+    position: relative;
+    box-shadow: -1px 3px 5px 0px black;
+    border-radius: 40px;
+    background-color: #222;
+    color: rgb(240, 240, 240);
+
+    > .text-area {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      hr {
+        border: 1px solid #555;
+      }
+
+      &.left {
+        padding-left: 40px;
+
+        .name, .chips {
+          justify-content: flex-start;
+          margin-right: 10px;
+        }
+      }
+
+      &.right {
+        padding-right: 40px;
+
+        .name, .chips {
+          justify-content: flex-end;
+          margin-left: 10px;
+        }
+      }
+
+      .name {
+        font-weight: bold;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      .chips {
+        .blinds-count {
+          margin-right: 3px;
+          font-size: 1rem;
+          font-style: italic;
+        }
+
+        .amount {
+          font-weight: bold;
+        }
+
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+
+    > .avatar-image {
+      position: absolute;
+      height: 70px;
+      width: 70px;
+      background-color: white;
+      border-radius: 50%;
+      border: 3px solid #333;
+      box-shadow: 4px 0px 4px -2px rgba(0, 0, 0, .99);
+      top: 50%;
+      transform: translateY(-50%);
+
+      &.left {
+        left: -30px;
+      }
+
+      &.right {
+        right: -30px;
+      }
+    }
+  }
+}

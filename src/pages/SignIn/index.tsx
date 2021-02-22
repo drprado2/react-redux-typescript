@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StoreState } from '../../store';
 import { signInRequest, setLoginEmail, setLoginPassword } from '../../store/modules/auth/slice';
 
-const SignIn: React.FC = () => {
+const SignInPage: React.FC = () => {
   const { loadingSignInRequest, isSignedIn, token } = useSelector(
     (state: StoreState) => state.auth,
   );
@@ -34,4 +34,4 @@ const SignIn: React.FC = () => {
   );
 };
 
-export default SignIn;
+export default SignInPage;

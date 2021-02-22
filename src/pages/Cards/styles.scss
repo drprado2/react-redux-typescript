@@ -1,24 +1,18 @@
-.card {
-  width: 140px;
-  height: 200px;
-  background-size: 102% 102%;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-position: center;
-  border-radius: 10px;
-  margin-left: 5px;
-  box-shadow: 0px 0px 4px 0px;
-  cursor: pointer;
-  transition: all .2s;
+.cards-area {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+  padding: 25px;
+  flex-wrap: wrap;
+  row-gap: 10px;
 
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 11px 2px;
+  min-height: 100vh;
+
+  .tables {
+    display: flex;
+    column-gap: 5px;
+    row-gap: 5px;
+    flex-wrap: wrap;
   }
 }
 
-.cards-area {
-  display: flex;
-  column-gap: 5px;
-  margin-top: 10px;
-}

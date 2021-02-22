@@ -1,0 +1,226 @@
+.poker-table {
+  display: flex;
+  padding: 10px 10px 10px 10px;
+  max-height: 480px;
+  width: 100%;
+  background-color: #0f0f2c;
+  max-width: 1050px;
+  overflow: hidden;
+
+  > .table {
+    border: 11px solid #999;
+    box-shadow: inset 0px 0px 4px 1px #000;
+    position: relative;
+    min-width: 540px;
+    min-height: 330px;
+    width: 100%;
+    display: flex;
+    border-radius: 160px;
+    background-color: green;
+    background-image: radial-gradient(#1caa27, #06560d);
+    margin: 60px 160px 40px 150px;
+
+    > .center-table {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      > .cards {
+        display: flex;
+        column-gap: 3px;
+      }
+    }
+
+    > .inner-border {
+      margin: 15px;
+      border: 1px solid #999;
+      flex-grow: 1;
+      border-radius: 155px;
+      background-image: url("../../assets/images/poker-table.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 30%;
+      opacity: 0.7;
+    }
+  }
+
+  .player-box {
+    position: absolute;
+
+    > .poker-button {
+      border-radius: 50%;
+      position: absolute;
+      background-color: #d8d80c;
+      font-family: emoji;
+      color: #e02e2e;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transform: rotate3d(360, 88, -40, 48deg);
+      perspective: 340px;
+      transform-style: preserve-3d;
+      box-shadow: 0px 4px 5px 1px #000;
+    }
+
+    > .player-bet {
+      position: absolute;
+    }
+  }
+
+  .player-1 {
+    bottom: -60px;
+    right: 13%;
+
+    > .poker-button {
+      top: 24px;
+      left: 0px;
+    }
+
+    > .player-bet {
+      top: 0;
+      left: 20px;
+    }
+  }
+
+  .player-2 {
+    top: -68px;
+    right: 13%;
+
+    > .player-bet {
+      bottom: -25px;
+      left: 37px;
+    }
+  }
+
+  .player-3 {
+    bottom: -60px;
+    left: 13%;
+
+    > .poker-button {
+      top: -13px;
+      right: 12px;
+    }
+
+    > .player-bet {
+      top: -35px;
+      right: 47px;
+    }
+  }
+
+  .player-4 {
+    top: -68px;
+    left: 13%;
+
+    > .poker-button {
+      right: 0;
+      bottom: -20px;
+    }
+
+    > .player-bet {
+      top: 50px;
+      right: 40px;
+    }
+  }
+
+  .player-5 {
+    top: 50%;
+    transform: translateY(-55%);
+    right: -165px;
+
+    > .poker-button {
+      left: -11px;
+      bottom: -3px;
+    }
+
+    > .player-bet {
+      top: 0;
+      left: -27px;
+    }
+  }
+
+  .player-6 {
+    top: 50%;
+    transform: translateY(-55%);
+    left: -165px;
+
+    > .poker-button {
+      right: -14px;
+      top: 60px;
+    }
+
+    > .player-bet {
+      top: 0;
+      right: -35px;
+    }
+  }
+
+  .player-7 {
+    top: 90%;
+    transform: translateY(-70%);
+    right: -125px;
+
+    > .poker-button {
+      left: -24px;
+      top: 37px;
+    }
+
+    > .player-bet {
+      top: -20px;
+      left: -17px;
+    }
+  }
+
+  .player-8 {
+    top: 17%;
+    transform: translateY(-70%);
+    left: -130px;
+
+    > .poker-button {
+      right: 8px;
+    }
+
+    > .player-bet {
+      top: 28px;
+      right: -38px;
+    }
+  }
+
+  .player-9 {
+    top: 17%;
+    transform: translateY(-70%);
+    right: -130px;
+
+    > .poker-button {
+      bottom: 0;
+      left: -16px;
+    }
+
+    > .player-bet {
+      top: 6px;
+      left: -38px;
+    }
+  }
+
+  .player-10 {
+    top: 90%;
+    transform: translateY(-70%);
+    left: -125px;
+
+    > .poker-button {
+      right: -25px;
+      top: 35px;
+    }
+
+    > .player-bet {
+      top: -18px;
+      right: -20px;
+    }
+  }
+}

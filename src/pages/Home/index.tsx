@@ -14,7 +14,7 @@ import { setCurrentPage } from '../../store/modules/template/slice';
 import { HomeParams } from '../../routes/authenticated.route';
 import useQuery from '../../routes/useQuery.hook';
 
-const Home = () => {
+const HomePage = () => {
   const dispatch = useDispatch();
   const { companyId } = useParams<HomeParams>();
   const { path, url } = useRouteMatch();
@@ -82,4 +82,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
